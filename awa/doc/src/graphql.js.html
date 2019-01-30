@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>graphql.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../";
+    var thisFile = "src\\graphql.js";
+    var defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>graphql.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript"><span class="hljs-keyword">import</span> gql <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-tag'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> queryCard = gql<span class="hljs-string">`
+  query CardQuery ($cardId: String) {
+    Card (id: $cardId) {
+      question
+      answer
+    }
+  }
+`</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> CREATE_CARD = gql<span class="hljs-string">`
+  mutation createCard($addTopic: ID, $addQuestion: String!, $addAnswer: String!, $dateShowed:DateTime!, $nextDateShow:DateTime!){
+    createCard(
+      topicId: $addTopic,
+      question: $addQuestion,
+      answer: $addAnswer,
+      dateShowed: $dateShowed
+      nextDateShow: $nextDateShow
+    ) {
+      id
+    }
+  }
+`</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> ALL_TOPICS = gql<span class="hljs-string">`
+  query topicQuery  {
+    allTopics {
+      id
+      topic
+    }
+  }
+`</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> queryFlashcardsByTopic = gql<span class="hljs-string">`
+  query allCardBytopic($topicid:ID, $date: DateTime){
+    allCards(filter: {
+    AND: [{
+      nextDateShow_lte: $date
+    }, {
+      topic:{id:$topicid}
+    }]
+  }){
+      id
+      question
+      answer
+      dateShowed
+      nextDateShow
+  }
+}
+`</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> CREATE_TOPIC = gql<span class="hljs-string">`
+  mutation createTopic($topicNA: String!) {
+    createTopic(
+      topic: $topicNA,
+    ) {
+      id
+    }
+  }
+`</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> CALCULATING_DATE_QUERY = gql<span class="hljs-string">`
+query CalculatingDateQuery($id: ID!, $dateShowed: DateTime!, $nextDateShow: DateTime!, $feeling: String!){
+ getNewDate(
+   id: $id
+   dateShowed: $dateShowed
+   nextDateShow: $nextDateShow
+   feeling: $feeling
+ ){
+   newDates
+ }
+}
+`</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> DELETE_TOPIC = gql<span class="hljs-string">`
+mutation DeleteTopickMutation($id: ID!){
+  deleteTopic(
+    id:$id
+  ){
+    topic
+  }
+}
+`</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> DELETE_CARD = gql<span class="hljs-string">`
+mutation DeleteCardkMutation($id: ID!){
+  deleteCard(
+    id:$id
+  ){
+    id
+  }
+}
+`</span>
+
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>

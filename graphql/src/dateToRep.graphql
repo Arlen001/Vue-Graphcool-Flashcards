@@ -1,0 +1,8 @@
+type getTheNextDate {
+  newDates: DateTime
+
+}
+
+extend type Query {
+  getNewDate(id: ID!, nextDateShow: DateTime!, dateShowed: DateTime! feeling: String!): getTheNextDate
+}
