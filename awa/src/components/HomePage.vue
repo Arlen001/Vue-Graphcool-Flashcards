@@ -12,7 +12,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to AWA Flashcards',
+      msg: 'Welcome To AWA Flashcards',
       silver: '#2F4F4F'
     }
   }
